@@ -1,3 +1,4 @@
+//Einer Cupino - COMP229 W2023 - 301233614
 module.exports = {
   //local MongoDB deployment ->
   //URI: 'mongodb://127.0.0.1/book_store'
