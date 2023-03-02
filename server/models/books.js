@@ -1,3 +1,4 @@
+//Einer Cupino - COMP229 W2023 - 301233614
 let mongoose = require('mongoose');
 
 // create a model class
