@@ -1,4 +1,4 @@
-//Einer Cupino - COMP229 W2023 - 301233614
+
 // modules required for routing
 let express = require('express');
 let router = express.Router();
