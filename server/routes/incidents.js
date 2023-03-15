@@ -3,6 +3,7 @@
 let express = require('express');
 let router = express.Router();
 let mongoose = require('mongoose');
+let moment = require('moment');
 
 // define the incident model
 let Incident = require('../models/incidents');
@@ -28,7 +29,7 @@ router.get('/', (req, res, next) => {
 router.get('/create', (req, res, next) => {
 
     res.render('incidents/create', {
-      title: 'Add Incident'
+      title: 'Create Incident'
      });
 
 });
@@ -36,11 +37,27 @@ router.get('/create', (req, res, next) => {
 // POST process the Incident Details page and create a new Incident - CREATE
 router.post('/create', (req, res, next) => {
 
+    let now = new Date();
+    let day = now.getDate().toString().padStart(2, "0");
+    let month = (now.getMonth() + 1).toString().padStart(2, "0");
+    let year = now.getFullYear().toString().slice(-2);
+    let hour = now.getHours().toString().padStart(2, "0");
+    let minute = now.getMinutes().toString().padStart(2, "0");
+    let second = now.getSeconds().toString().padStart(2, "0");
+    let incidentNumber = "INC"+ year + month + day + hour + minute;
+
     let newIncident = Incident({
-      "title": req.body.title,
-      "price": req.body.price,
-      "author": req.body.author,
-      "genre": req.body.genre,
+        "number": incidentNumber,
+        "state": req.body.state,
+        "priority": req.body.priority,
+        "type": req.body.type,
+        "custname": req.body.custname,
+        "custcontact": req.body.custcontact,
+        "created": new Date(),
+        "createdby": req.body.createdby,
+        "resolved": req.body.resolved,
+        "resolvedby": req.body.resolvedby,
+        "description": req.body.description
     });
 
     Incident.create(newIncident,(err,Incident) => {
@@ -82,10 +99,17 @@ router.post('/update/:id', (req, res, next) => {
 
     let updatedIncident = Incident({
       "_id":id,
-      "title": req.body.title,
-      "price": req.body.price,
-      "author": req.body.author,
-      "genre": req.body.genre,
+      "number": req.body.number,
+      "state": req.body.state,
+        "priority": req.body.priority,
+        "type": req.body.type,
+        "custname": req.body.custname,
+        "custcontact": req.body.custcontact,
+        "created": req.body.created,
+        "createdby": req.body.createdby,
+        "resolved": req.body.resolved,
+        "resolvedby": req.body.resolvedby,
+        "description": req.body.description
     });
 
     Incident.updateOne({_id: id}, updatedIncident, (err)=>{

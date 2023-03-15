@@ -3,18 +3,26 @@
     <!-- MAIN CONTENT -->
     <div class="container">
       <div class="row">
-        <div class="col-md-offset-1 col-md-10">
-          <h3>All Incidents </h3>
-          <a href="/incidents/create" class="btn btn-primary"><i class="fa fa-plus"></i>Create Incident</a>
+        <div class="col col-xl-12">
+          <h1>All Incidents </h1>
+          <div class="text-right">
+          <a href="/incidents/create" class="btn btn-primary"><i class="fa fa-plus"></i> Create Incident</a></div>
           <br>
           <div class="table-responsive">
             <table class="table table-bordered table-striped table-hover">
               <thead>
                 <tr>
-                  <th>Title</th>
-                  <th class="text-center">Price</th>
-                  <th class="text-center">Author</th>
-                  <th class="text-center">Genre</th>
+                  <th class="text-center">Incident Number</th>
+                  <th class="text-center">State</th>
+                  <th class="text-center">Priority</th>
+                  <th class="text-center">Type</th>
+                  <th class="text-center">Customer Name</th>
+                  <th class="text-center">Customer Contact</th>
+                  <th class="text-center">Created</th>
+                  <th class="text-center">Created by</th>
+                  <th class="text-center">Resolved</th>
+                  <th class="text-center">Resolved by</th>
+                  <th class="text-center">Description</th>
                   <th class="text-center"></th>
                   <th class="text-center"></th>
                 </tr>
@@ -22,10 +30,27 @@
                 <tbody>
                 <% for (let count = 0; count < incidents.length; count++) { %>
                 <tr>
-                  <td><%= incidents[count].title %></td>
-                  <td class="text-center">$<%= incidents[count].price %></td>
-                  <td class="text-center"><%= incidents[count].author %></td>
-                  <td class="text-center"><%= incidents[count].genre %></td>
+                  <td class="text-center"><%= incidents[count].number %></td>
+                  <td class="text-center"><%= incidents[count].state %></td>
+                  <td class="text-center"><%= incidents[count].priority %></td>
+                  <td class="text-center"><%= incidents[count].type %></td>
+                  <td class="text-center"><%= incidents[count].custname %></td>
+                  <td class="text-center"><%= incidents[count].custcontact %></td>
+                  <td class="text-center"><%= new Date(incidents[count].created).toLocaleDateString('en-US') + ' ' + new Date(incidents[count].created).toLocaleTimeString('en-US') %></td>
+                  <td class="text-center"><%= incidents[count].createdby %></td>
+                  <td class="text-center">
+                    <% if (incidents[count].resolved) { %>
+                    <%= new Date(incidents[count].resolved).toLocaleDateString('en-US') + ' ' + new Date(incidents[count].resolved).toLocaleTimeString('en-US') %> %></td>
+                    <% } else { %>
+                      Pending resolution
+                    <% } %>
+                  <td class="text-center">
+                    <% if (incidents[count].resolvedby) { %>
+                    <%= incidents[count].resolvedby %></td>
+                    <% } else { %>
+                      Pending resolution
+                    <% } %>
+                  <td class="text-center"><%= incidents[count].description %></td>
 
                   <td class="text-center">
 
@@ -43,13 +68,8 @@
               </tbody>
             </table>
           </div>
-           <div class="col-md-offset-1 col-md-10 text-center">
-            <ul class="pagination pagination-lg pager" id="myPager"></ul>
-          </div>
         </div>
       </div>
     </div>
-
-<% include ../partials/footer.ejs %>
 
 

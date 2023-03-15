@@ -3,3 +3,13 @@ body {
   padding-bottom: 70px;
   }
 
+  .navbar {
+    height: 80px; /* set the desired height */
+  }
+
+  .navbar-nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }

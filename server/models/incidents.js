@@ -1,12 +1,20 @@
 
 let mongoose = require('mongoose');
+let moment = require('moment');
 
 // create a model class
 let Incident = mongoose.Schema({
-    title: String,
-    price: Number,
-    author: String,
-    genre: String
+    number: String,
+    state: String,
+    priority: String,
+    type: String,
+    custname: String,
+    custcontact: String,
+    created: Date,
+    createdby: String,
+    resolved: Date,
+    resolvedby: String,
+    description: String
 },
 {
   collection: "incidents"
