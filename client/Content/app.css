@@ -4,7 +4,7 @@ body {
   }
 
   .navbar {
-    height: 80px; /* set the desired height */
+    height: 80px;
   }
 
   .navbar-nav {
@@ -13,3 +13,8 @@ body {
     justify-content: center;
     height: 100%;
   }
+
+  table td {
+    white-space: nowrap;
+  }
+

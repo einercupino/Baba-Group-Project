@@ -21,8 +21,6 @@
                   <th class="text-center">Created</th>
                   <th class="text-center">Created by</th>
                   <th class="text-center">Resolved</th>
-                  <th class="text-center">Resolved by</th>
-                  <th class="text-center">Description</th>
                   <th class="text-center"></th>
                   <th class="text-center"></th>
                 </tr>
@@ -42,16 +40,9 @@
                     <% if (incidents[count].resolved) { %>
                     <%= new Date(incidents[count].resolved).toLocaleDateString('en-US') + ' ' + new Date(incidents[count].resolved).toLocaleTimeString('en-US') %> %></td>
                     <% } else { %>
-                      Pending resolution
+                      on-going
                     <% } %>
-                  <td class="text-center">
-                    <% if (incidents[count].resolvedby) { %>
-                    <%= incidents[count].resolvedby %></td>
-                    <% } else { %>
-                      Pending resolution
-                    <% } %>
-                  <td class="text-center"><%= incidents[count].description %></td>
-
+                    
                   <td class="text-center">
 
                     <a href="/incidents/update/<%= incidents[count]._id %>" class="btn btn-primary btn-sm">
@@ -59,7 +50,6 @@
                   </td>
 
                   <td class="text-center">
-
                     <a href="/incidents/delete/<%= incidents[count]._id %>" class="btn btn-danger btn-sm">
                       <i class="fa-solid fa-trash"></i> Delete</a>
                   </td>
