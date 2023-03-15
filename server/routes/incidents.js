@@ -7,7 +7,7 @@ let mongoose = require('mongoose');
 // define the incident model
 let Incident = require('../models/incidents');
 
-/* GET books List page. READ */
+/* GET All Incidents. READ */
 router.get('/', (req, res, next) => {
   // find all incidents in the incident collection
   Incident.find( (err, incidents) => {
@@ -59,10 +59,6 @@ router.post('/create', (req, res, next) => {
 
 // GET the Incident Details page in order to update an existing Incident
 router.get('/update/:id', (req, res, next) => {
-
-    /*****************
-     * ADD CODE HERE *
-     *****************/
 
     let id = req.params.id;
     Incident.findById(id,(err,incidentToEdit) => {
