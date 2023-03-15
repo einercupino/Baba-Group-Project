@@ -17,7 +17,7 @@ router.get('/', (req, res, next) => {
     }
     else {
       res.render('incidents', {
-        title: 'Incidents',
+        title: 'BBG Incident Central',
         incidents: incidents
       });
     }
