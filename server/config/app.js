@@ -24,7 +24,7 @@ mongoDB.once('open', ()=> {
 
 // define routers
 let index = require('../routes/index'); // top level routes
-let incidents = require('../routes/incidents'); // routes for books   *
+let incidents = require('../routes/incidents'); // routes for incidents   *
 
 let app = express();
 
@@ -32,7 +32,6 @@ let app = express();
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'ejs');
 
-// uncomment after placing your favicon in /client
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
