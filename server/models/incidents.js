@@ -1,6 +1,5 @@
 
 let mongoose = require('mongoose');
-let moment = require('moment');
 
 // create a model class
 let Incident = mongoose.Schema({

@@ -17,10 +17,9 @@
                   <th class="text-center">Priority</th>
                   <th class="text-center">Type</th>
                   <th class="text-center">Customer Name</th>
-                  <th class="text-center">Customer Contact</th>
+                  <th class="text-center">Description</th>
                   <th class="text-center">Created</th>
                   <th class="text-center">Created by</th>
-                  <th class="text-center">Resolved</th>
                   <th class="text-center"></th>
                   <th class="text-center"></th>
                 </tr>
@@ -33,15 +32,9 @@
                   <td class="text-center"><%= incidents[count].priority %></td>
                   <td class="text-center"><%= incidents[count].type %></td>
                   <td class="text-center"><%= incidents[count].custname %></td>
-                  <td class="text-center"><%= incidents[count].custcontact %></td>
+                  <td class="text-center"><%= incidents[count].description.substring(0,22) + "..." %></td>
                   <td class="text-center"><%= new Date(incidents[count].created).toLocaleDateString('en-US') + ' ' + new Date(incidents[count].created).toLocaleTimeString('en-US') %></td>
                   <td class="text-center"><%= incidents[count].createdby %></td>
-                  <td class="text-center">
-                    <% if (incidents[count].resolved) { %>
-                    <%= new Date(incidents[count].resolved).toLocaleDateString('en-US') + ' ' + new Date(incidents[count].resolved).toLocaleTimeString('en-US') %> %></td>
-                    <% } else { %>
-                      on-going
-                    <% } %>
                     
                   <td class="text-center">
 
