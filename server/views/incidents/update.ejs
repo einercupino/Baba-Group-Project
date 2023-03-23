@@ -1,0 +1,106 @@
+<%- include ('../partials/header.ejs') %>
+
+    <!-- MAIN CONTENT -->
+<div class="container">
+      
+      <form class="form" method="post">
+        <h1><%= title %></h1><br><br>
+
+      <div class="row">
+        <div class="col-md-offset-2 col-md-4">
+          <div class="form-group">
+            <label for="numbertf">Incident Number</label>
+            <input type="text" class="form-control" id="numbertf"
+            placeholder="Incident Status" name="number" value="<%=incident.number %>" readonly required>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-offset-2 col-md-4">
+              <div class="form-group">
+                <label for="statetf">State</label>
+                <input type="text" class="form-control" id="statetf"
+                placeholder="Incident Status" name="state" value="<%=incident.state %>" required>
+              </div>
+              <div class="form-group">
+                <label for="prioritytf">Priority</label>
+                <input type="text" class="form-control" id="prioritytf"
+                placeholder="Incident Priority" name="priority" value="<%=incident.priority %>" required>
+              </div>
+              <div class="form-group">
+                <label for="typetf">Type</label>
+                <input type="text" class="form-control" id="typetf"
+                placeholder="Incident Type" name="type" value="<%=incident.type %>" required>
+              </div> 
+        </div>
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="custnametf">Customer Name</label>
+            <input type="text" class="form-control" id="custnametf"
+            placeholder="Customer Name" name="custname" value="<%=incident.custname %>" required>
+          </div>
+          <div class="form-group">
+            <label for="custcontacttf">Customer Contact</label>
+            <input type="text" class="form-control" id="custcontacttf"
+            placeholder="Customer Contact" name="custcontact" value="<%=incident.custcontact %>" required>
+          </div>
+          
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-offset-2 col-md-4">
+          <div class="form-group">
+            <label for="createdtf">Created</label>
+            <input type="text" class="form-control" id="createdtf"
+            placeholder="Incident created by" name="createdby" 
+            value="<%=new Date(incident.created).toLocaleDateString('en-US') + ' ' + new Date(incident.created).toLocaleTimeString('en-US') %>" readonly required>
+          </div>
+          <div class="form-group">
+            <label for="resolvedtf">Resolved</label>
+            <input type="text" class="form-control" id="resolvedtf"
+              placeholder="MM/DD/YYYY HH:MM" name="resolvedtf"
+              <% if (incident.resolved) { %>
+                value="<%=new Date(incident.resolved).toLocaleDateString('en-US') + ' ' + new Date(incident.resolved).toLocaleTimeString('en-US') %>"
+              <% } %>
+              >
+          </div>
+          
+          
+        </div>
+ 
+        <div class="col-md-4">
+          <div class="form-group">
+            <label for="createdbytf">Created by</label>
+            <input type="text" class="form-control" id="createdbytf"
+            placeholder="Incident created by" name="createdby" value="<%=incident.createdby %>" required>
+          </div>
+          <div class="form-group">
+            <label for="resolvedbytf">Resolved by</label>
+            <input type="text" class="form-control" id="resolvedbytf"
+            placeholder="Incident resolved by" name="resolvedby" value="<%=incident.resolvedby %>">
+          </div>
+        </div>
+
+
+      </div>
+
+      <div class="row">
+        <div class="col-md-offset-2 col-md-8">
+          <div class="form-group">
+            <label for="descriptiontf">Description</label>
+            <textarea class="form-control" id="descriptiontf" placeholder="Incident description" name="description" required><%=incident.description %></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary"><i class="fa fa-check-square-o"></i> Submit</button>
+          <a href="/incidents" class="btn btn-warning"><i class="fa fa-undo"></i> Cancel</a>
+      </div>
+
+  
+
+      
+
+
+    </form>
+</div>

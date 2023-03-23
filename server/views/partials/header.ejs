@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title><%= title %></title>
+    <!-- CSS SECTION -->
+    <link rel="stylesheet" href="/Scripts/lib/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/Scripts/lib/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/Scripts/lib/font-awesome/css/font-awesome.min.css">
+    <link rel='stylesheet' href='/Content/app.css' />
+    <link rel="stylesheet" href = 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css' />
+  </head>
+  <body>
+
+
+    <nav class="navbar navbar-inverse" role="navigation">
+      <!-- Brand and toggle get grouped for better mobile display -->
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">
+          <div style="display: flex;">
+            <img src="\assets\images\logoheader.png" alt="Logo" style="margin-right: 10px;">
+            <span style="align-self: center;">Incident Central</span>
+          </div>
+        </a>
+      </div>
+  
+      <!-- Collect the nav links, forms, and other content for toggling -->
+      <div class="collapse navbar-collapse navbar-ex1-collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <% if(typeof displayName == 'string' && displayName) { %>
+            <li class="navbar-text"><i class="fas fa-lg fa-user"></i> Welcome, <%= displayName %></li>
+            <li class="nav-item"><a href="/logout" class="nav-link"><i class="fas fa-lg fa-sign-out-alt"></i> Logout</a></li>
+    
+            <%} else { %>
+
+              <li class="nav-item"><a href="/login" class="nav-link"><i class="fas fa-lg fa-sign-in-alt"></i> Login</a></li>
+            <% } %>
+        </ul>
+      </div><!-- /.navbar-collapse -->
+    </nav>

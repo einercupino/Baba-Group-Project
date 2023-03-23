@@ -1,0 +1,44 @@
+<%- include ('../partials/header.ejs') %>
+
+<section id="login">
+    <div class="container" data-aos="fade-up">
+      <div class="section-title">
+        <center><h2>Login</h2></center>
+        <!-- Message Area-->
+        <% if(messages.length > 0) {%>
+        <div class ="alert alert-danger">
+            <%= messages %>
+        </div>
+        <% } %>
+
+      </div>
+    <div class="container d-flex flex-column align-items-center">
+      <div class="col-md-offset-4 col-md-4">
+          
+          <form class = "form" method="POST" autocomplete="off">
+            
+            <div class = "form-group">
+                <label for="username">Username: </label>
+                <input type="text" class = "form-control" id="username" placeholder="Enter username"
+                name="username" required autofocus>
+                </div>
+                <br>
+                <div class = "form-group">
+                    <label for="password">Password: </label>
+                    <input type="password" class = "form-control" id="password" placeholder="Enter password"
+                    name="password" required>
+                    or
+                    <a href ="/register">Register here</a>
+                    </div>
+                    <br>
+                
+                      <fieldset class="form-group text-right">
+                        <input type="submit" class="btn btn-success" value="Login">
+                        <a href="/" ><input type="button" class="btn btn-warning" value="Cancel"></a>
+                      </fieldset>
+          
+          </form>
+      </div>
+    </div>
+    </div>
+  </section>

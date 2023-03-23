@@ -1,0 +1,58 @@
+<%- include ('../partials/header.ejs') %>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+      <div class="row">
+        <div class="col col-xl-12">
+          <h1>All Incidents </h1>
+          <div class="text-right">
+          <a href="/incidents/create" class="btn btn-primary"><i class="fa fa-plus"></i> Create Incident</a></div>
+          <br>
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped table-hover">
+              <thead>
+                <tr>
+                  <th class="text-center">Incident Number</th>
+                  <th class="text-center">State</th>
+                  <th class="text-center">Priority</th>
+                  <th class="text-center">Type</th>
+                  <th class="text-center">Customer Name</th>
+                  <th class="text-center">Description</th>
+                  <th class="text-center">Created</th>
+                  <th class="text-center">Created by</th>
+                  <th class="text-center"></th>
+                  <th class="text-center"></th>
+                </tr>
+                </thead>
+                <tbody>
+                <% for (let count = 0; count < incidents.length; count++) { %>
+                <tr>
+                  <td class="text-center"><%= incidents[count].number %></td>
+                  <td class="text-center"><%= incidents[count].state %></td>
+                  <td class="text-center"><%= incidents[count].priority %></td>
+                  <td class="text-center"><%= incidents[count].type %></td>
+                  <td class="text-center"><%= incidents[count].custname %></td>
+                  <td class="text-center"><%= incidents[count].description.substring(0,22) + "..." %></td>
+                  <td class="text-center"><%= new Date(incidents[count].created).toLocaleDateString('en-US') + ' ' + new Date(incidents[count].created).toLocaleTimeString('en-US') %></td>
+                  <td class="text-center"><%= incidents[count].createdby %></td>
+                    
+                  <td class="text-center">
+
+                    <a href="/incidents/update/<%= incidents[count]._id %>" class="btn btn-primary btn-sm">
+                      <i class="fa-solid fa-pencil"></i> Edit</a>
+                  </td>
+
+                  <td class="text-center">
+                    <a href="/incidents/delete/<%= incidents[count]._id %>" class="btn btn-danger btn-sm">
+                      <i class="fa-solid fa-trash"></i> Delete</a>
+                  </td>
+                </tr>
+                <% } %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
