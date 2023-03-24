@@ -1,0 +1,63 @@
+<div class="container ">
+    <h2 class="text-dark mt-5">{{ title }}</h2><br>
+    <div class="row">
+        <form class="form col-lg-10 col-sm-12 col-md-12" [formGroup]="incidentForm" (ngSubmit)="submit()">
+            <div class="row">
+              <div class="col-md-offset-2 col-md-4">
+                <div class="form-group">
+                  <label for="numbertf" class="fw-bold mb-2">Incident Number</label>
+                  <input type="text" class="form-control" id="numbertf"
+                  placeholder="Creating new incident" name="number" disabled="true" required>
+                </div>
+              </div>
+            </div>
+          <div class="row">
+            <div class="col-md-offset-2 col-md-4">
+                  <div class="form-group">
+                    <label for="statetf" class="fw-bold mb-2 mt-4">State</label>
+                    <input type="text" class="form-control" id="statetf"
+                    placeholder="Incident Status" formControlName="state" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="prioritytf" class="fw-bold mb-2 mt-4">Priority</label>
+                    <input type="text" class="form-control" id="prioritytf"
+                    placeholder="Low, Medium, High" formControlName="priority" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="typetf" class="fw-bold mb-2 mt-4">Type</label>
+                    <input type="text" class="form-control" id="typetf"
+                    placeholder="Incident Type" formControlName="type" required>
+                  </div>
+            </div>
+            <div class="col-md-4">
+              <div class="form-group">
+                <label for="custnametf" class="fw-bold mb-2 mt-4">Customer Name</label>
+                <input type="text" class="form-control" id="custnametf"
+                placeholder="Customer Name" formControlName="customerName" required>
+              </div>
+              <div class="form-group">
+                <label for="custcontacttf" class="fw-bold mb-2 mt-4">Customer Contact</label>
+                <input type="text" class="form-control" id="custcontacttf"
+                placeholder="Customer Contact" formControlName="customerContact" required>
+              </div>
+              <div class="form-group">
+                <label for="createdbytf" class="fw-bold mb-2 mt-4">Created by</label>
+                <input type="text" class="form-control" id="createdbytf"
+                placeholder="Incident created by" formControlName="createdBy" required>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-offset-2 col-md-8">
+              <div class="form-group">
+                <label for="descriptiontf" class="fw-bold mb-2 mt-4">Description</label>
+                <textarea rows="4" class="form-control" id="descriptiontf" placeholder="Incident description" formControlName="description" required></textarea>
+              </div><br/>
+              <button type="submit" class="btn btn-primary"><i class="fa fa-check-square-o"></i> Submit</button>
+                  <a href="/incidents" class="btn btn-warning ms-2"><i class="fa fa-undo"></i> Cancel</a>
+            </div>
+          </div>
+        </form>
+    </div>
+    
+</div>
