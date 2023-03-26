@@ -1,0 +1,54 @@
+
+<div class="container-lg">
+    <div class="row">
+      <div class="col col-xl-12">
+        <h2 class="mt-5">All Incidents </h2>
+        <div class="text-end">
+        <a href="/incidents/create" class="btn btn-primary"><i class="fa fa-plus"></i> Create Incident</a></div>
+        <br>
+        <div class="table-responsive">
+          <table class="table table-bordered table-striped table-hover">
+            <thead>
+              <tr>
+                <th class="text-center">Incident Number</th>
+                <th class="text-center">State</th>
+                <th class="text-center">Priority</th>
+                <th class="text-center">Type</th>
+                <th class="text-center">Customer Name</th>
+                <th class="text-center">Description</th>
+                <th class="text-center">Created</th>
+                <th class="text-center">Created by</th>
+                <th class="text-center"></th>
+                <th class="text-center"></th>
+              </tr>
+              </thead>
+              <tbody>
+             <!--start of for loop-->
+              <tr>
+                <td class="text-center">INC2303171908</td>
+                <td class="text-center">Open</td>
+                <td class="text-center">2 - Medium</td>
+                <td class="text-center">System</td>
+                <td class="text-center">Ethan Parker</td>
+                <td class="text-center">The system is down and user not able to login</td>
+                <td class="text-center">3/17/2023 7:08:02 PM</td>
+                <td class="text-center">Einer Cupino</td>
+                  
+                <td class="text-center">
+
+                  <a href="/incidents/update/<%= incidents[count]._id %>" class="btn btn-primary btn-sm">
+                    <i class="fa-solid fa-pencil"></i> Edit</a>
+                </td>
+
+                <td class="text-center">
+                  <a href="/incidents/delete/<%= incidents[count]._id %>" class="btn btn-danger btn-sm">
+                    <i class="fa-solid fa-trash"></i> Delete</a>
+                </td>
+              </tr>
+              <!--end of for loop-->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>

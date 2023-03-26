@@ -11,6 +11,7 @@ let passport = require('passport');
 let jwt = require('jsonwebtoken');
 let DB = require('../config/db');
 
+let passport = require('passport')
 
 // define the User Model instance
 let userModel = require('../models/user')
