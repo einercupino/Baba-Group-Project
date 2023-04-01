@@ -105,15 +105,23 @@ $.fn.pageMe = function(opts){
 
 // IIFE
 (function(){
-  $(".btn-danger").click(function(event){
-    if(!confirm("Are you sure?")) {
-      event.preventDefault();
-      window.location.assign("/games");
-    }
-  });
+    function Start()
+    {
+        console.log("App Started...");
 
- /* pagination code */
-  $('#myTable').pageMe(
-    {pagerSelector:'#myPager',showPrevNext:true,hidePageNumbers:false,perPage:6}
-    );
+        let deleteButtons = document.querySelectorAll('.btn-danger')
+
+        for(button of deleteButtons)
+        {
+            button.addEventListener('click', (event)=>{
+                if(!confirm("Are you sure?"))
+                {
+                    event.preventDefault();
+                    window.location.assign('/incidents');
+                }
+            });
+        }
+    }
+  
+    window.addEventListener("load", Start);
 })();
