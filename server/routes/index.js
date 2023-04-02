@@ -13,7 +13,8 @@ function requireAuth(req,res,next)
     // check if the user is logged in
     if(!req.isAuthenticated())
     {
-        return res.redirect('/login');
+        //return res.redirect('/login');
+        return res.json({success: false, msg: 'Error, User is not Authenticated!'});
     }
     next();
 }
