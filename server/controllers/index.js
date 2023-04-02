@@ -18,14 +18,16 @@ module.exports.displayHomePage = (req, res, next) => {
   // find all incidents in the incident collection
   Incident.find( (err, incidents) => {
     if (err) {
-      return console.error(err);
+      //return console.error(err);
+      return res.json({success: false, msg: err});
     }
     else {
-      res.render('incidents', {
+      /*res.render('incidents', {
         title: 'BBG Incident Central',
         incidents: incidents,
         displayName: req.user ? req.user.displayName: ''
-      });
+      });*/
+      res.json(incidents)
     }
   });
 }
@@ -56,7 +58,8 @@ module.exports.processLoginPage = (req, res, next) => {
       // is there a user login error?
       if(!user){
           req.flash('loginMessage','Authentication Error');
-          return res.redirect('/login')
+          res.json({success: false, msg: 'Authentication Error'});
+          //return res.redirect('/login')
       }
       req.login(user,(err) => {
           // server error?
@@ -76,7 +79,7 @@ module.exports.processLoginPage = (req, res, next) => {
                 expiresIn: 604800 // 1 week
           });
 
-        /* TODO Uncomment to get ready to convert to API
+      
 
           res.json({success: true, msg: 'User Logged in Successfully', user: {
                 id: user._id,
@@ -85,9 +88,9 @@ module.exports.processLoginPage = (req, res, next) => {
                 email: user.email
           }, token: authToken});
 
-        */
+    
 
-          return res.redirect('/incidents') //prep for res json
+          //return res.redirect('/incidents') //prep for res json
       });
 
   })(req,res,next)
@@ -118,24 +121,28 @@ module.exports.processRegisterPage = (req, res, next) => {
         displayName: req.body.displayName
 
     });
-
+  
     User.register(newUser,req.body.password, (err) => {
         if(err){
             console.log("Error: Inserting New User");
             if(err.name == "UserExistsError")
             {
-                req.flash(
+                /*req.flash(
                     'registerMessage',
                     'Registration Error: User Already Exists!'
                 );
-                console.log("Error: User already Exists")
+                console.log("Error: User already Exists")*/
+                res.json({success: false, msg: 'Error: User already Exists'});
             }
-            return res.render('auth/register', {
+            else{
+                res.json({success: false, msg: 'An error occured while trying to insert New User'});
+            }
+            /*return res.render('auth/register', {
                 title: 'Register',
                 messages: req.flash('registerMessage'),
                 displayName: req.user ? req.user.displayName : ''
 
-            })
+            })*/
         
         }
         else{
@@ -143,21 +150,20 @@ module.exports.processRegisterPage = (req, res, next) => {
 
             // redirect the user and authenticate them
 
-            /* TODO Uncomment to get ready to convert to API
+           
 
             res.json({success: true, msg: 'User Registered Successfully!'});
 
-            */
 
-            return passport.authenticate('local')(req,res,() => {
+            /*return passport.authenticate('local')(req,res,() => {
                 res.redirect('/incidents')
-            });    
+            }); */   
         }
     });
 }
 
 module.exports.performLogout = (req, res, next) => {
     req.session.destroy(function (err) {
-        res.redirect('/'); 
+        res.json({success: true, msg: 'User Logged out Successfully!'});
       });
 }

@@ -11,14 +11,16 @@ module.exports.displayIncidentList = (req, res, next) => {
     // find all incidents in the incident collection
   Incident.find( (err, incidents) => {
     if (err) {
-      return console.error(err);
+      //return console.error(err);
+      return res.json({success: false, msg: err});
     }
     else {
-      res.render('incidents', {
+      /*res.render('incidents', {
         title: 'Incidents',
         incidents: incidents,
         displayName: req.user ? req.user.displayName: ''
-      });
+      });*/
+      res.json(incidents)
     }
   });
 
@@ -60,11 +62,13 @@ module.exports.processCreateIncident = (req, res, next) => {
       if(err)
       {
           console.log(err);
-          res.end(err);
+          //res.end(err);
+          res.json({success: false, msg: err});
       }
       else
       {
-          res.redirect('/incidents');
+          //res.redirect('/incidents');
+          res.json({success: true, msg: 'Incident created successfully!'})
       }
     });
 };
@@ -107,12 +111,14 @@ module.exports.processUpdateIncident = (req, res, next) => {
     Incident.updateOne({_id: id}, updatedIncident, (err)=>{
         if(err){
             console.log(err);
-            res.end(err);
+            //res.end(err);
+            res.json({success: false, msg: err});
         }
         else
         {
             //refresh the incident list
-            res.redirect('/incidents');
+            //res.redirect('/incidents');
+            res.json({success: true, msg: 'Incident updated successfully!'})
         }
     });
 };
@@ -123,12 +129,14 @@ module.exports.performDeleteIncident = (req, res, next) => {
     Incident.remove({_id: id},(err)=>{
         if(err){
             console.log(err);
-            res.end(err);
+            //res.end(err);
+            res.json({success: false, msg: err});
         }
         else
         {
             //refresh the user list
-            res.redirect('/incidents');
+            //res.redirect('/incidents');
+            res.json({success: true, msg: 'Incident removed successfully!'})
         }
     });
 };
