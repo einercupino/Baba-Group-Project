@@ -52,19 +52,21 @@ module.exports.processLoginPage = (req, res, next) => {
     passport.authenticate('local',
   (err,user, info) => {
       // server error?
+      console.log("The login user--------->>>>>",user);
       if(err){
           return next(err);
       }
       // is there a user login error?
       if(!user){
           req.flash('loginMessage','Authentication Error');
-          res.json({success: false, msg: 'Authentication Error'});
+          res.status(400).json({success: false, msg: 'Authentication Error'});
+          return res;
           //return res.redirect('/login')
       }
       req.login(user,(err) => {
           // server error?
           if(err){
-              return next(err)
+              return next(err);
           }
 
           const payload = 
@@ -81,14 +83,15 @@ module.exports.processLoginPage = (req, res, next) => {
 
       
 
-          res.json({success: true, msg: 'User Logged in Successfully', user: {
+          res.status(200).json({success: true, msg: 'User Logged in Successfully', user: {
                 id: user._id,
                 displayName: user.displayName,
                 username: user.username,
                 email: user.email
           }, token: authToken});
 
-    
+          return res;
+          
 
           //return res.redirect('/incidents') //prep for res json
       });

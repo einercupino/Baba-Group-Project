@@ -40,7 +40,8 @@ let index = require('../routes/index'); // top level routes
 let incidents = require('../routes/incidents'); // routes for incidents   *
 
 let app = express();
-
+//use cors
+app.use(cors())
 // view engine setup
 app.set('views', path.join(__dirname, '../views'));
 app.set('view engine', 'ejs');

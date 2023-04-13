@@ -18,7 +18,8 @@ let User = userModel.User; // alias
 function requireAuth(req,res,next)
 {
     // check if the user is logged in
-    if(!req.isAuthenticated())
+    console.log("CHECK-----> ",req.headers.authorization);
+    if(!jwt.verify(req.headers.authorization,"SomeSecret"))
     {
         //return res.redirect('/login');
         return res.json({success: false, msg: 'Error, User is not Authenticated!'});
