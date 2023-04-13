@@ -9,6 +9,9 @@ import { HomeComponent } from './pages/home/home.component';
 import { LoginComponent } from './pages/login/login.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { AddIncidentsComponent } from './pages/add-incidents/add-incidents.component';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptorInterceptor } from './Interceptors/auth-interceptor.interceptor';
+import { EditIncidentComponent } from './pages/edit-incident/edit-incident.component';
 
 @NgModule({
   declarations: [
@@ -18,15 +21,17 @@ import { AddIncidentsComponent } from './pages/add-incidents/add-incidents.compo
     HomeComponent,
     LoginComponent,
     RegisterComponent,
-    AddIncidentsComponent
+    AddIncidentsComponent,
+    EditIncidentComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [{provide:HTTP_INTERCEPTORS, useClass:AuthInterceptorInterceptor,multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

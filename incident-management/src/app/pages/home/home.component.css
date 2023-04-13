@@ -1,0 +1,10 @@
+table{
+    margin-bottom: 50px;
+}
+
+td{
+ max-width: 100px;
+ overflow: hidden;
+ text-overflow: ellipsis;
+ white-space: nowrap;
+}

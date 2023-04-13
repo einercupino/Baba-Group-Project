@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-register',
@@ -9,25 +10,52 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  title!: string;
-
-  formBuilder: FormBuilder = new FormBuilder;
-
-  registerForn = this.formBuilder.group({
-    username: '',
-    password: '',
-    email:'',
-    displayName:''
+  registerFormT: FormGroup = new FormGroup({
+    username: new FormControl(''),
+    password: new FormControl(''),
+    email: new FormControl(''),
+    displayName: new FormControl(''),
   });
 
-  constructor(private route: ActivatedRoute){  }
+  submitted = false;
+  authError= false;
+
+  public errorMessage: string;
+  
+  constructor(private route: ActivatedRoute,private formBuilder:FormBuilder,private auth:AuthService,private router:Router) { this.errorMessage="" }
+  //adding validations to the registerForm 
+  ngOnInit(): void {
+    this.registerFormT= this.formBuilder.group({
+      username: ['',Validators.required],
+      password: ['',Validators.required],
+      email: ['',Validators.email],
+      displayName: ['',Validators.required]
+    })
+  }
+  ///
 
   public submit() {
-    console.log("New User data: ",this.registerForn.value);
-  }
+    this.submitted=true;
+    
+    if(this.registerFormT.invalid){
+      return;
+    }
 
-  ngOnInit(): void {
-    this.title = this.route.snapshot.data['title'];
+    console.log("New User data: ",this.registerFormT.value);
+    
+    this.auth.register(this.registerFormT.value)
+    .subscribe((res)=>{
+        this.authError=false;
+        this.router.navigate(['/login']);
+    },
+    (err)=>{
+        console.log("Register error ",err.error.msg);
+        this.authError= err.error.msg;
+    })
+
+  }
+  get registerForm(): { [key: string]: AbstractControl } {
+    return this.registerFormT.controls;
   }
 
 }
