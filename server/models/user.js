@@ -36,6 +36,14 @@ let User = mongoose.Schema
             required: 'Display Name is required'
 
        },
+       group: 
+       {
+            type: String,
+            default: '',
+            trim: true,
+            required: 'Group Name is required'
+
+       },
        created: 
        {
             type: Date,
