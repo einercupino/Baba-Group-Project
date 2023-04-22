@@ -88,7 +88,7 @@ module.exports.processLoginPage = (req, res, next) => {
                 displayName: user.displayName,
                 username: user.username,
                 email: user.email,
-                group: user.groupName
+                group: user.group
           }, token: authToken});
 
           return res;
